@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Ninject;
 using System.Diagnostics;
 using TestLeyers.Models;
 using TestLeyers.Servises.Container;
+using TestLeyers.Servises.LayersServises_controller.Database;
+using TestLeyers.Servises.ServisesForAddToDatabase;
 
 namespace TestLeyers.Controllers
 {
@@ -16,8 +19,18 @@ namespace TestLeyers.Controllers
 
         public IActionResult Index()
         {
-            var userServise = new IocContainer().GetUserServis();
-            return View(userServise);
+            var FetchUser = new IocContainer().GetUserServise();
+
+            // eller vi kan använda ninject packege och använda ninject istället för IoContainer filed 
+            var ninject = new StandardKernel();
+
+            ninject.Bind<ISendUsers>().To<GetUserFromMySQL>(); // om någon frågar om IsendUsers du kan skicka den class (GetUserFromDataBase)
+
+            ninject.Bind<ISendUsers>().To<GetUserFromEntityFrammeWorkSQL>(); // eller istället ta den från EntityFrammeWork 
+
+            var FetchUsers2 = ninject.Get<ISendUsers>();    
+
+            return View(FetchUser);
         }
 
 

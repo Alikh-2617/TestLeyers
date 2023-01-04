@@ -4,9 +4,9 @@ namespace TestLeyers.Servises
 {
     public class UserServiseWithMySQL : IUserServise
     {
-        public string Add(UserModel user)
+        public void Add(UserModel user)
         {
-            return "UserServiseWithMySQL";
+            Console.WriteLine("UserServiseWithMySQL");
         }
     }
 }

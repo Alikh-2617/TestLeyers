@@ -4,9 +4,9 @@ namespace TestLeyers.Servises.ServisesForAddToDatabase
 {
     public class UserServiseWithEntityFrammeWorkSQL : IUserServise
     {
-        public string Add(UserModel user)
+        public void Add(UserModel user)
         {
-            return "UserServiseWithEntityFrammeWorkSQL";
+            Console.WriteLine("UserServiseWithEntityFrammeWorkSQL");
         }
     }
 }

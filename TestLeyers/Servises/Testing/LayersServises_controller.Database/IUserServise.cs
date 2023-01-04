@@ -4,6 +4,6 @@ namespace TestLeyers.Servises
 {
     public interface IUserServise
     {
-        string Add(UserModel user);
+        void Add(UserModel user);
     }
 }
